@@ -10,18 +10,21 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Inertia\Response;
+use PhpParser\Node\Stmt\Return_;
 
 class AuthenticatedSessionController extends Controller
 {
     /**
      * Display the login view.
      */
-    public function create(): Response
+    public function create()
     {
-        return Inertia::render('Auth/Login', [
-            'canResetPassword' => Route::has('password.request'),
-            'status' => session('status'),
-        ]);
+        // return Inertia::render('Auth/Login', [
+        //     'canResetPassword' => Route::has('password.request'),
+        //     'status' => session('status'),
+        // ]);
+
+        return view('auth.login');
     }
 
     /**
