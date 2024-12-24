@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/base', function(){
-    return view('auth/forget-password');
+    return view('brouillon');
 });
 
 require __DIR__.'/auth.php';
