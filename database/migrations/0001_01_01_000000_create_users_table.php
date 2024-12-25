@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Role;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,8 +14,18 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('last_name');
+            $table->string('first_name');
+            $table->date('birth');
+            $table->boolean('sexe'); // Feminin -> 1, Masculin -> 0
             $table->string('email')->unique();
+            $table->string('phone_number')->unique();
+            $table->string('sector')->nullable();  //filiere
+            $table->text('motivation');
+            $table->text('objectif');
+            $table->boolean('status')->default(0);
+            $table->boolean('online')->default(0);
+            $table->boolean('achieved')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
