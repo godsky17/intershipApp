@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
 use PhpParser\Node\Stmt\Return_;
@@ -30,12 +32,31 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(LoginRequest $request)
     {
-        $request->authenticate();
+        if($request->role == "admin")
+        {
+            try {
+
+                $credentials = $request->only('email', 'password');
+                
+                if(!Auth::guard('admin')->attempt($credentials)){
+                    return back()->withErrors([
+                        'email' => "Les informations d'identification sont incorrectes"
+                    ]);
+                };
+
+            } catch (Exception $e) {
+
+                throw ValidationException::withMessages([
+                    'email' => trans('auth.failed'),
+                ]);
+            }
+        }else{
+            $request->authenticate();
+        }
 
         $request->session()->regenerate();
-
         return redirect()->intended(route('dashboard', absolute: false));
     }
 

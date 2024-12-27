@@ -1,3 +1,12 @@
+@php
+    // Identification du type de user qui se connecte
+    if(Auth::guard('admin')->check())
+    {
+        $user = Auth::guard('admin')->user();
+    }else {
+        $user = Auth::user();
+    }
+@endphp
 <div class="z-[9]" id="app_header">
     <div
         class="app-header z-[999] ltr:ml-[248px] rtl:mr-[248px] bg-white dark:bg-slate-800 shadow-sm dark:shadow-slate-700">
@@ -1533,7 +1542,7 @@
                                 class="block w-full h-full object-cover rounded-full">
                         </div>
                         <span
-                            class="flex-none text-slate-600 dark:text-white text-sm font-normal items-center lg:flex hidden overflow-hidden text-ellipsis whitespace-nowrap"> {{ Auth::user()->name  }} </span>
+                            class="flex-none text-slate-600 dark:text-white text-sm font-normal items-center lg:flex hidden overflow-hidden text-ellipsis whitespace-nowrap"> {{ $user->last_name }} </span>
                         <svg class="w-[16px] h-[16px] dark:text-white hidden lg:inline-block text-base inline-block ml-[10px] rtl:mr-[10px]"
                             aria-hidden="true" fill="none" stroke="currentColor"
                             viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

@@ -25,7 +25,7 @@
                 </div>
                 <!-- BEGIN: Forgot Password Form -->
                 <x-auth.form class="{{ session('status') ? 'hidden' : '' }}" method="POST" action="{{route('password.email')}}">
-                    <x-auth.input type="email" name="email" label="Email" placeholder="Enter your email"></x-auth.input>
+                    <x-auth.input type="email" name="email" label="Email" value="" placeholder="Enter your email"></x-auth.input>
                     <button class="btn btn-dark block w-full text-center">Send recovery email</button>
                 </x-auth.form>
                 <!-- END: Forgot Password Form -->

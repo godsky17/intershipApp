@@ -66,8 +66,23 @@
                 </form> --}}
 
                 <x-auth.form class="" method="POST" action="{{ route('login') }}">
-                    <x-auth.input type="email" label="Email" name="email" value="" placeholder="Add placeholder"></x-auth.input>
+                    <x-auth.input type="email" label="Email" name="email" value="{{ old('email')}}" placeholder="Add placeholder"></x-auth.input>
                     <x-auth.input type="password" label="Password" name="password" value="" placeholder="Add placeholder"></x-auth.input>
+                    <div class="formGroup text-slate-500">
+                        <label for="basicSelect" class="form-label">Basic Select</label>
+                        <select name="role" id="basicSelect" class="form-control w-full mt-2">
+                          <option selected="Selected" disabled="disabled" value="{{ old('role')}}" class="py-1 inline-block font-Inter font-normal text-sm text-slate-500">Select an option</option>
+                          <option value="stagiaire" class="py-1 inline-block font-Inter font-normal text-sm text-slate-500">Stagiaire</option>
+                          <option value="admin" class="py-1 inline-block font-Inter font-normal text-sm text-slate-500">Administrateur</option>
+                        </select>
+                        @error("role")
+                        <div class="">
+                            <p class="" style="color: red; font-size:13px; font-weigth:300">
+                                {{ $message }}
+                            </p>
+                        </div>
+                    @enderror
+                    </div>
                     <div class="flex justify-between">
                         <label class="flex items-center cursor-pointer">
                             <input type="checkbox" class="hiddens">
