@@ -95,7 +95,7 @@
 
                             <a href="{{ route('intership.accepted', $intership) }}" class="btn inline-flex justify-center mx-2 ml-auto mt-3 btn-primary">Accepter</a>
   
-                            <a href="buttons.html" class="btn inline-flex justify-center mx-2 mt-3 btn-danger active">Refuser</a>
+                            <a href="{{ route('intership.refused', $intership) }}" class="btn inline-flex justify-center mx-2 mt-3 btn-danger active">Refuser</a>
   
                           </div>
                     </div>

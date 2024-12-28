@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');
-})->middleware(['auth:admin', "auth:user", 'verified'])->name('dashboard');
+})->middleware(['auth:admin', 'verified'])->name('dashboard');
 
 Route::middleware('auth:admin')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -28,8 +28,8 @@ Route::middleware('auth:admin')->group(function () {
 Route::prefix('intership')->middleware(['auth:admin', 'verified'])->name('intership.')->group(function(){
    Route::get('/index', [IntershipController::class, 'index'])->name('index'); 
    Route::get('/show/{intership}', [IntershipController::class, 'show'])->name('show'); 
-   Route::get('/update-to-stagiaire/{intership}', [IntershipController::class, 'accepted'])->name('
-   '); 
+   Route::get('/accept-request/{intership}', [IntershipController::class, 'accepted'])->name('accepted'); 
+   Route::get('/reject-request/{intership}', [IntershipController::class, 'refused'])->name('refused'); 
 });
 
 Route::get('/base', function(){

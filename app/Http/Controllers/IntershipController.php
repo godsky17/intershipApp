@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\IntershipUpdateRequest;
 use App\Mail\AcceptedIntershipMail;
+use App\Mail\RefusedIntershipMail;
 use App\Models\Intership;
 use App\Models\Role;
 use App\Models\Status;
@@ -27,31 +28,6 @@ class IntershipController extends Controller
         return view('intership.show', [
             'intership' => $intership
         ]);
-    }
-
-    public function addToIntership(Intership $intership)
-    {
-        // $role = Role::where('name', 'Stagiaire')->first();
-        // $status = Status::where('name', 'Accepter')->first();
-        // //changement du statut de la demande
-        // $intership->status_id = $status->id;
-        // $save_change_status = $intership->save();
-        // //changement du role de l'utilisateur
-        // $user = User::where('id', $intership->user_id)->first();
-        // $user->role_id = $role->id;
-        // $save_role = $user->save();
-        // if ($save_change_status && $save_role) {
-        //    $user_name = $user->getName() . " est desormais un stagiair.";
-        //     return to_route('intership.index')->with('success', $user_name);
-        // }
-
-        //Modifier le statut de la demande
-
-        //Modifier le role ou non de l'utilisateur
-
-        //generer un mot de passe aleatoir pour le nouveau compte
-
-        //Envoyer le mail
     }
 
     public function accepted(Intership $intership)
@@ -79,5 +55,23 @@ class IntershipController extends Controller
            $user_name = $user->getName() . " est desormais un stagiair.";
             return to_route('intership.index')->with('success', $user_name);
         }
+    }
+
+    public function refused(Intership $intership)
+    {
+        //Modifier le statut de la demande
+        $status = Status::where('name', 'Rejeter')->first();
+        $intership->status_id = $status->id;
+        $save_change_status = $intership->save();
+
+        //envoi de mail pour notifier
+        $user = User::where('id', $intership->user_id)->first();
+        $send_mail = Mail::send(new RefusedIntershipMail($user->email, $user->getName()));
+
+        //verification et retour
+        if ($save_change_status && $send_mail) {
+            $user_name = "La demande de " . $user->getName() . " a ete rejeter avec succes.";
+             return to_route('intership.index')->with('success', $user_name);
+         }
     }
 }
