@@ -30,6 +30,7 @@ Route::prefix('intership')->middleware(['auth:admin', 'verified'])->name('inters
    Route::get('/show/{intership}', [IntershipController::class, 'show'])->name('show'); 
    Route::get('/accept-request/{intership}', [IntershipController::class, 'accepted'])->name('accepted'); 
    Route::get('/reject-request/{intership}', [IntershipController::class, 'refused'])->name('refused'); 
+   Route::get('/achieved-request/{intership}', [IntershipController::class, 'achieved'])->name('achieved'); 
 });
 
 Route::get('/base', function(){

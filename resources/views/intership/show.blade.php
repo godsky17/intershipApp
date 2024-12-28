@@ -86,9 +86,21 @@
                         </div>
                         <div class="card-text h-full space-x-3 mt-8">
                             <div class="text-base font-medium text-slate-800 dark:text-slate-100 mb-3">
-                                Autres informations
+                                Experience(s)
                             </div>
 
+
+                            
+
+                        </div>
+                        <div class="card-text h-full space-x-3 mt-8">
+                            <div class="text-base font-medium text-slate-800 dark:text-slate-100 mb-3">
+                                Autres informations
+                            </div>
+                            <div class="">
+                                <span class="badge bg-{{ $intership->computer ? "succees" : "danger" }}-500 text-white capitalize rounded-3xl">Ordinateur</span>
+                                <span class="badge bg-{{ $intership->pair ? "success" : "danger" }}-500 text-white capitalize rounded-3xl">Binome</span>
+                            </div>
                         </div>
                         <div class="btn-group-example btn-group gap-2 mt-4">
 

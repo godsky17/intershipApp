@@ -19,7 +19,7 @@ class IntershipController extends Controller
     {
         
         return view('intership.index', [
-            'interships' => $interships = Intership::where('status_id', 1)->with('user')->paginate(10)
+            'interships' => $interships = Intership::where('status_id', 1)->where('achieved', 0)->with('user')->paginate(10)
         ]);
     }
 
@@ -71,6 +71,18 @@ class IntershipController extends Controller
         //verification et retour
         if ($save_change_status && $send_mail) {
             $user_name = "La demande de " . $user->getName() . " a ete rejeter avec succes.";
+             return to_route('intership.index')->with('success', $user_name);
+         }
+    }
+
+    public function achieved(Intership $intership)
+    {
+        //modifier l'attribut corbeille
+        $intership->achieved = 1;
+        $intership->save();
+        $user = User::where('id', $intership->user_id)->first();
+        if ($intership->save()) {
+            $user_name = "La demande de " . $user->getName() . " a ete achive avec succes.";
              return to_route('intership.index')->with('success', $user_name);
          }
     }
