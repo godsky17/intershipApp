@@ -14,16 +14,24 @@ class StatusSeeder extends Seeder
      */
     public function run(): void
     {
+        // Status::create([
+        //     'name' => "En attente"
+        // ]);
+
+        // Status::create([
+        //     'name' => "Accepter"
+        // ]);
+
+        // Status::create([
+        //     'name' => "Rejeter"
+        // ]);
+
         Status::create([
-            'name' => "En attente"
+            'name' => 'Lue'
         ]);
 
         Status::create([
-            'name' => "Accepter"
-        ]);
-
-        Status::create([
-            'name' => "Rejeter"
+            'name' => 'Lue et approuver'
         ]);
     }
 }

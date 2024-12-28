@@ -39,7 +39,6 @@ class AuthenticatedSessionController extends Controller
             try {
                 
                 $credentials = $request->only('email', 'password');
-                
                 if(!Auth::guard('admin')->attempt($credentials)){
                     return back()->withErrors([
                         'email' => "Les informations d'identification sont incorrectes"

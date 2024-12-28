@@ -62,6 +62,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Intership::class);
     }
 
+    public function rapports()
+    {
+        return $this->hasMany(Rapport::class);
+    }
+
     public function role()
     {
         return $this->belongsTo(Role::class);
