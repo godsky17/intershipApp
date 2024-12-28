@@ -86,4 +86,12 @@ class IntershipController extends Controller
              return to_route('intership.index')->with('success', $user_name);
          }
     }
+
+    public function showIntershipList()
+    {
+        $role_stagiaire = Role::where('name', 'Stagiaire')->first();
+        return view('intership.list', [
+            'interships' => User::where('role_id', $role_stagiaire->id)->orderBy('created_at', 'desc')->paginate(10)
+        ]);
+    }
 }

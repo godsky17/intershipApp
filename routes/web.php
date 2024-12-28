@@ -28,6 +28,7 @@ Route::middleware('auth:admin')->group(function () {
 
 Route::prefix('intership')->middleware(['auth:admin', 'verified'])->name('intership.')->group(function(){
    Route::get('/', [IntershipController::class, 'index'])->name('index'); 
+   Route::get('/liste-statgiaire', [IntershipController::class, 'showIntershipList'])->name('list'); 
    Route::get('/show/{intership}', [IntershipController::class, 'show'])->name('show'); 
    Route::get('/accept-request/{intership}', [IntershipController::class, 'accepted'])->name('accepted'); 
    Route::get('/reject-request/{intership}', [IntershipController::class, 'refused'])->name('refused'); 
