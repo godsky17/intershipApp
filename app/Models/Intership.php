@@ -19,7 +19,7 @@ class Intership extends Model
         'pair',
         'pairName',
         'computer',
-        'status',
+        'status_id',
         'achieved',
         'user_id',
     ];
@@ -27,5 +27,14 @@ class Intership extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function is_pair(){
+        return $this->pair ? "Oui" : "Nom";
+    }
+
+    public function have_computer()
+    {
+        return $this->computer ? "Oui" : "Nom";
     }
 }

@@ -14,8 +14,8 @@
             <div
                 class="flex items-center md:space-x-4 space-x-2 xl:space-x-0 rtl:space-x-reverse vertical-box">
                 <a href="index.html" class="mobile-logo xl:hidden inline-block">
-                    <img src="assets/images/logo/logo-c.svg" class="black_logo" alt="logo">
-                    <img src="assets/images/logo/logo-c-white.svg" class="white_logo" alt="logo">
+                    <img src="{{asset('assets/images/logo/logo-c.svg')}}" class="black_logo" alt="logo">
+                    <img src="{{asset('assets/images/logo/logo-c-white.svg')}}" class="white_logo" alt="logo">
                 </a>
                 <button class="smallDeviceMenuController hidden md:inline-block xl:hidden">
                     <iconify-icon
@@ -35,13 +35,13 @@
             <div class="items-center space-x-4 rtl:space-x-reverse horizental-box">
                 <a href="index.html">
                     <span class="xl:inline-block hidden">
-                        <img src="assets/images/logo/logo.svg" class="black_logo " alt="logo">
-                        <img src="assets/images/logo/logo-white.svg" class="white_logo"
+                        <img src="{{asset('assets/images/logo/logo.svg')}}" class="black_logo " alt="logo">
+                        <img src="{{asset('assets/images/logo/logo-white.svg')}}" class="white_logo"
                             alt="logo">
                     </span>
                     <span class="xl:hidden inline-block">
-                        <img src="assets/images/logo/logo-c.svg" class="black_logo " alt="logo">
-                        <img src="assets/images/logo/logo-c-white.svg" class="white_logo "
+                        <img src="{{asset('assets/images/logo/logo-c.svg')}}" class="black_logo " alt="logo">
+                        <img src="{{asset('assets/images/logo/logo-c-white.svg')}}" class="white_logo "
                             alt="logo">
                     </span>
                 </a>
@@ -1334,7 +1334,7 @@
                                             class="h-8 w-8 bg-white dark:bg-slate-700 rounded-full relative">
                                             <span
                                                 class="bg-secondary-500 w-[10px] h-[10px] rounded-full border border-white dark:border-slate-700 inline-block absolute right-0 top-0"></span>
-                                            <img src="assets/images/all-img/user.png" alt="user"
+                                            <img src="{{asset('assets/images/all-img/user.png')}}" alt="user"
                                                 class="block w-full h-full object-cover rounded-full border hover:border-white border-transparent">
                                         </div>
                                     </div>
@@ -1364,7 +1364,7 @@
                                             class="h-8 w-8 bg-white dark:bg-slate-700 rounded-full relative">
                                             <span
                                                 class="bg-green-500 w-[10px] h-[10px] rounded-full border border-white dark:border-slate-700 inline-block absolute right-0 top-0"></span>
-                                            <img src="assets/images/all-img/user2.png" alt="user"
+                                            <img src="{{asset('assets/images/all-img/user2.png')}}" alt="user"
                                                 class="block w-full h-full object-cover rounded-full border hover:border-white border-transparent">
                                         </div>
                                     </div>
@@ -1390,7 +1390,7 @@
                                             class="h-8 w-8 bg-white dark:bg-slate-700 rounded-full relative">
                                             <span
                                                 class="bg-green-500 w-[10px] h-[10px] rounded-full border border-white dark:border-slate-700 inline-block absolute right-0 top-0"></span>
-                                            <img src="assets/images/all-img/user3.png" alt="user"
+                                            <img src="{{asset('assets/images/all-img/user3.png')}}" alt="user"
                                                 class="block w-full h-full object-cover rounded-full border hover:border-white border-transparent">
                                         </div>
                                     </div>
@@ -1444,7 +1444,7 @@
                                 <div class="flex ltr:text-left rtl:text-right">
                                     <div class="flex-none ltr:mr-3 rtl:ml-3">
                                         <div class="h-8 w-8 bg-white rounded-full">
-                                            <img src="assets/images/all-img/user.png" alt="user"
+                                            <img src="{{asset('assets/images/all-img/user.png')}}" alt="user"
                                                 class="border-white block w-full h-full object-cover rounded-full border">
                                         </div>
                                     </div>
@@ -1467,7 +1467,7 @@
                                 <div class="flex ltr:text-left rtl:text-right relative">
                                     <div class="flex-none ltr:mr-3 rtl:ml-3">
                                         <div class="h-8 w-8 bg-white rounded-full">
-                                            <img src="assets/images/all-img/user2.png" alt="user"
+                                            <img src="{{asset('assets/images/all-img/user2.png')}}" alt="user"
                                                 class="border-transparent block w-full h-full object-cover rounded-full border">
                                         </div>
                                     </div>
@@ -1491,7 +1491,7 @@
                             <div class="flex ltr:text-left rtl:text-right relative">
                                 <div class="flex-none ltr:mr-3 rtl:ml-3">
                                     <div class="h-8 w-8 bg-white rounded-full">
-                                        <img src="assets/images/all-img/user3.png" alt="user"
+                                        <img src="{{asset('assets/images/all-img/user3.png')}}" alt="user"
                                             class="border-transparent block w-full h-full object-cover rounded-full border">
                                     </div>
                                 </div>
@@ -1510,7 +1510,7 @@
                             <div class="flex ltr:text-left rtl:text-right relative">
                                 <div class="flex-none ltr:mr-3 rtl:ml-3">
                                     <div class="h-8 w-8 bg-white rounded-full">
-                                        <img src="assets/images/all-img/user4.png" alt="user"
+                                        <img src="{{asset('assets/images/all-img/user4.png')}}" alt="user"
                                             class="border-transparent block w-full h-full object-cover rounded-full border">
                                     </div>
                                 </div>
@@ -1538,7 +1538,7 @@
                         type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <div
                             class="lg:h-8 lg:w-8 h-7 w-7 rounded-full flex-1 ltr:mr-[10px] rtl:ml-[10px]">
-                            <img src="assets/images/all-img/user.png" alt="user"
+                            <img src="{{asset('assets/images/all-img/user.png')}}" alt="user"
                                 class="block w-full h-full object-cover rounded-full">
                         </div>
                         <span

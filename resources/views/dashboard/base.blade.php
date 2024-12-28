@@ -73,16 +73,16 @@
     </main>
     <!-- scripts -->
     <!-- Core Js -->
-    <script src="assets/js/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/popper.js"></script>
-    <script src="assets/js/tw-elements-1.0.0-alpha13.min.js"></script>
-    <script src="assets/js/SimpleBar.js"></script>
-    <script src="assets/js/iconify.js"></script>
+    <script src="{{asset('assets/js/jquery-3.6.0.min.js')}}"></script>
+    <script src="{{ asset("assets/js/popper.js") }}"></script>
+    <script src="{{ asset('assets/js/tw-elements-1.0.0-alpha13.min.js') }}"></script>
+    <script src="{{asset('assets/js/SimpleBar.js')}}"></script>
+    <script src="{{asset('assets/js/iconify.js')}}"></script>
     <!-- Jquery Plugins -->
 
     <!-- app js -->
-    <script src="assets/js/sidebar-menu.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script src="{{asset('assets/js/sidebar-menu.js')}}"></script>
+    <script src="{{asset('assets/js/app.js')}}"></script>
 </body>
 
 </html>

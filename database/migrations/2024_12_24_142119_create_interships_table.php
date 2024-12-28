@@ -22,7 +22,6 @@ return new class extends Migration
             $table->boolean('pair')->default(0);
             $table->string('pairName')->nullable();
             $table->boolean('computer')->default(1);
-            $table->boolean('status')->default(0);
             $table->boolean('achieved')->default(0);
             $table->foreignIdFor(User::class)->constrained();
             $table->timestamps();

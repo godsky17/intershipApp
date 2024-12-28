@@ -37,7 +37,7 @@ class AuthenticatedSessionController extends Controller
         if($request->role == "admin")
         {
             try {
-
+                
                 $credentials = $request->only('email', 'password');
                 
                 if(!Auth::guard('admin')->attempt($credentials)){

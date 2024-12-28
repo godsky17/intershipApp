@@ -29,7 +29,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'sector',
         'motivation',
         'objectif',
-        'status',
         'online',
         'achieved',
         'role_id'
@@ -66,5 +65,15 @@ class User extends Authenticatable implements MustVerifyEmail
     public function role()
     {
         return $this->belongsTo(Role::class);
+    }
+
+    public function getName()
+    {
+        return $this->last_name . " " . $this->first_name;
+    }
+
+    public function getEmail()
+    {
+        return $this->email;
     }
 }

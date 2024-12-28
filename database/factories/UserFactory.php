@@ -34,7 +34,6 @@ class UserFactory extends Factory
             'sector' => fake()->domainName(),
             'motivation' => fake()->sentences(5, true),
             'objectif' => fake()->sentences(3, true),
-            'status' => fake()->numberBetween(0,1),
             'online' => fake()->numberBetween(0,1),
             'achieved' => fake()->numberBetween(0,1),
             'role_id' => fake()->numberBetween(1, 4),

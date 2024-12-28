@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Role;
+use App\Models\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -23,7 +24,6 @@ return new class extends Migration
             $table->string('sector')->nullable();  //filiere
             $table->text('motivation');
             $table->text('objectif');
-            $table->boolean('status')->default(0);
             $table->boolean('online')->default(0);
             $table->boolean('achieved')->default(0);
             $table->timestamp('email_verified_at')->nullable();

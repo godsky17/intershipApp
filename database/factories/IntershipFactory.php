@@ -27,7 +27,7 @@ class IntershipFactory extends Factory
             'pair' => fake()->numberBetween(0,1),
             'pairName' => fake()->name(),
             'computer' => fake()->numberBetween(0,1),
-            'status' => fake()->numberBetween(0,1),
+            'status_id' => fake()->numberBetween(1,3),
             'achieved' => fake()->numberBetween(0,1),
             'user_id' => fake()->numberBetween(1,$nbrUser)
         ];
