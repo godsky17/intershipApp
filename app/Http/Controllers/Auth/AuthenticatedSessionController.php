@@ -44,6 +44,8 @@ class AuthenticatedSessionController extends Controller
                         'email' => "Les informations d'identification sont incorrectes"
                     ]);
                 };
+                $request->session()->regenerate();
+                return redirect()->intended(route('admin.dashboard', absolute: false));
 
             } catch (Exception $e) {
 
@@ -53,10 +55,12 @@ class AuthenticatedSessionController extends Controller
             }
         }else{
             $request->authenticate();
+            $request->session()->regenerate();
+            // return redirect()->intended(route('dashboard', absolute: false));
+            return 'Your are connected';
         }
 
-        $request->session()->regenerate();
-        return redirect()->intended(route('dashboard', absolute: false));
+        
     }
 
     /**

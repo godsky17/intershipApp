@@ -1,4 +1,4 @@
-@extends('../dashboard/base')
+@extends('../administration.dashboard/base')
 @section('content')
 
 
@@ -13,10 +13,8 @@
                 <!-- BEGIN: Hover Tables -->
                 <div class="card">
                     <header class=" card-header noborder">
-                        <h4 class="card-title">Administrateurs</h4>
-                        <div class="mt-2">
-                            <a href="{{ route('admin.create') }}" class="btn flex justify-center btn-dark ml-auto">Ajouter</a >
-                        </div>
+                        <h4 class="card-title">Hover Table
+                        </h4>
                     </header>
                     <div class="card-body px-6 pb-6">
                         <div class="overflow-x-auto -mx-6">
@@ -51,11 +49,11 @@
                                         <tbody
                                             class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700">
 
-                                            @forelse ($admins as $item)
+                                            @forelse ($interships as $item)
                                             <tr class="hover:bg-slate-200 dark:hover:bg-slate-700">
                                                 <td class="table-td">{{ $item->last_name }}</td>
                                                 <td class="table-td">{{ $item->first_name }}</td>
-                                                <td class="table-td ">{{ $item->post }}</td>
+                                                <td class="table-td ">{{ $item->sector }}</td>
                                                 <td class="table-td ">
                                                     {{ $item->email }} <br>
                                                     {{ $item->phone_number }} <br>
@@ -78,5 +76,5 @@
 
                 <!-- END: Hover Tables -->
             </div>
-            {{ $admins->links() }}
+            {{ $interships->links() }}
 @endsection

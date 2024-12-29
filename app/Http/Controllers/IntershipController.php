@@ -18,14 +18,14 @@ class IntershipController extends Controller
     public function index()
     {
         
-        return view('intership.index', [
+        return view('administration.intership.index', [
             'interships' => $interships = Intership::where('status_id', 1)->where('achieved', 0)->with('user')->paginate(10)
         ]);
     }
 
     public function show(Intership $intership)
     {
-        return view('intership.show', [
+        return view('administration.intership.show', [
             'intership' => $intership
         ]);
     }
@@ -53,7 +53,7 @@ class IntershipController extends Controller
         //verification et retour
         if ($save_change_status && $save_role && $send_mail) {
            $user_name = $user->getName() . " est desormais un stagiair.";
-            return to_route('intership.index')->with('success', $user_name);
+            return to_route('administration.intership.index')->with('success', $user_name);
         }
     }
 
@@ -71,7 +71,7 @@ class IntershipController extends Controller
         //verification et retour
         if ($save_change_status && $send_mail) {
             $user_name = "La demande de " . $user->getName() . " a ete rejeter avec succes.";
-             return to_route('intership.index')->with('success', $user_name);
+             return to_route('administration.intership.index')->with('success', $user_name);
          }
     }
 
@@ -83,14 +83,14 @@ class IntershipController extends Controller
         $user = User::where('id', $intership->user_id)->first();
         if ($intership->save()) {
             $user_name = "La demande de " . $user->getName() . " a ete achive avec succes.";
-             return to_route('intership.index')->with('success', $user_name);
+             return to_route('administration.intership.index')->with('success', $user_name);
          }
     }
 
     public function showIntershipList()
     {
         $role_stagiaire = Role::where('name', 'Stagiaire')->first();
-        return view('intership.list', [
+        return view('administration.intership.list', [
             'interships' => User::where('role_id', $role_stagiaire->id)->orderBy('created_at', 'desc')->paginate(10)
         ]);
     }

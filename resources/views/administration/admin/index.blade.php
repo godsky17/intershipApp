@@ -1,4 +1,4 @@
-@extends('../dashboard/base')
+@extends('../administration.dashboard/base')
 @section('content')
 
 
@@ -13,8 +13,10 @@
                 <!-- BEGIN: Hover Tables -->
                 <div class="card">
                     <header class=" card-header noborder">
-                        <h4 class="card-title">Hover Table
-                        </h4>
+                        <h4 class="card-title">Administrateurs</h4>
+                        <div class="mt-2">
+                            <a href="{{ route('admin.create') }}" class="btn flex justify-center btn-dark ml-auto">Ajouter</a >
+                        </div>
                     </header>
                     <div class="card-body px-6 pb-6">
                         <div class="overflow-x-auto -mx-6">
@@ -41,6 +43,14 @@
                                                 </th>
                                                 
                                                 <th scope="col" class=" table-th ">
+                                                    Role
+                                                </th>
+
+                                                <th scope="col" class=" table-th ">
+                                                    Statut
+                                                </th>
+
+                                                <th scope="col" class=" table-th ">
                                                     
                                                 </th>
 
@@ -49,17 +59,26 @@
                                         <tbody
                                             class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700">
 
-                                            @forelse ($interships as $item)
+                                            @forelse ($admins as $item)
                                             <tr class="hover:bg-slate-200 dark:hover:bg-slate-700">
                                                 <td class="table-td">{{ $item->last_name }}</td>
                                                 <td class="table-td">{{ $item->first_name }}</td>
-                                                <td class="table-td ">{{ $item->sector }}</td>
+                                                <td class="table-td ">{{ $item->post }}</td>
                                                 <td class="table-td ">
                                                     {{ $item->email }} <br>
                                                     {{ $item->phone_number }} <br>
                                                 </td>
+
+                                                <td class="table-td ">
+                                                    {{ $item->role->name }}
+                                                </td>
+
                                                 <td class="table-td ">
                                                     <span class="badge bg-{{ $item->online ? 'success' : 'danger'}}-500 text-white capitalize rounded-3xl">{{ $item->online ? 'En ligne' : 'Deconnecte'}}</span>
+                                                </td>
+
+                                                <td class="table-td ">
+                                                    <a href="{{route('admin.updateRole', $item)}}" class="btn inline-flex justify-center mx-2 mt-3 btn-primary active">Modifier</a>
                                                 </td>
                                             </tr>
                                             @empty
@@ -76,5 +95,5 @@
 
                 <!-- END: Hover Tables -->
             </div>
-            {{ $interships->links() }}
+            {{ $admins->links() }}
 @endsection

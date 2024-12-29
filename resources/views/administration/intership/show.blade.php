@@ -1,4 +1,4 @@
-@extends('../dashboard/base')
+@extends('../administration.dashboard/base')
 @section('content')
     <div class="grid grid-cols-1 gap-5">
         <div class="xl:col-span-5 lg:col-span-7 col-span-12">

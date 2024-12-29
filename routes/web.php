@@ -17,36 +17,40 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-})->middleware(['auth:admin', 'verified'])->name('dashboard');
-
-Route::middleware('auth:admin')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::prefix('administration')->middleware(['auth:admin', 'verified'])->group(function(){
+    Route::get('/dashboard', function () {
+        return view('administration.dashboard.index');
+    })->middleware(['auth:admin','verified'])->name('admin.dashboard');
+    
+    Route::middleware('auth:admin')->group(function () {
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    });
+    
+    Route::prefix('/intership')->name('intership.')->group(function(){
+       Route::get('/', [IntershipController::class, 'index'])->name('index'); 
+       Route::get('/liste-statgiaire', [IntershipController::class, 'showIntershipList'])->name('list'); 
+       Route::get('/show/{intership}', [IntershipController::class, 'show'])->name('show'); 
+       Route::get('/accept-request/{intership}', [IntershipController::class, 'accepted'])->name('accepted'); 
+       Route::get('/reject-request/{intership}', [IntershipController::class, 'refused'])->name('refused'); 
+       Route::get('/achieved-request/{intership}', [IntershipController::class, 'achieved'])->name('achieved'); 
+    });
+    
+    Route::prefix('/rapport')->name('rapport.')->group(function(){
+        Route::get('/', [RapportController::class, 'index'])->name('index'); 
+        Route::get('/validated-rapport/{rapport}', [RapportController::class, 'validated'])->name('validated'); 
+     });
+    
+    
+     Route::prefix('/admin')->name('admin.')->group(function(){
+        Route::get('/', [AdminController::class, 'index'])->name('index'); 
+        Route::get('/creer-un-admin', [AdminController::class, 'create'])->name('create'); 
+        Route::post('/creer-un-admin', [AdminController::class, 'store'])->name('store'); 
+        Route::get('/modifier-role/{admin}', [AdminController::class, 'goToUpdateRole'])->name('updateRole'); 
+        Route::post('/modifier-role/{admin}', [AdminController::class, 'updateRole'])->name('updateRoleStore'); 
+     });
 });
-
-Route::prefix('intership')->middleware(['auth:admin', 'verified'])->name('intership.')->group(function(){
-   Route::get('/', [IntershipController::class, 'index'])->name('index'); 
-   Route::get('/liste-statgiaire', [IntershipController::class, 'showIntershipList'])->name('list'); 
-   Route::get('/show/{intership}', [IntershipController::class, 'show'])->name('show'); 
-   Route::get('/accept-request/{intership}', [IntershipController::class, 'accepted'])->name('accepted'); 
-   Route::get('/reject-request/{intership}', [IntershipController::class, 'refused'])->name('refused'); 
-   Route::get('/achieved-request/{intership}', [IntershipController::class, 'achieved'])->name('achieved'); 
-});
-
-Route::prefix('rapport')->middleware(['auth:admin', 'verified'])->name('rapport.')->group(function(){
-    Route::get('/', [RapportController::class, 'index'])->name('index'); 
-    Route::get('/validated-rapport/{rapport}', [RapportController::class, 'validated'])->name('validated'); 
- });
-
-
- Route::prefix('admin')->middleware(['auth:admin', 'verified'])->name('admin.')->group(function(){
-    Route::get('/', [AdminController::class, 'index'])->name('index'); 
-    Route::get('/creer-un-admin', [AdminController::class, 'create'])->name('create'); 
-    Route::post('/creer-un-admin', [AdminController::class, 'store'])->name('store'); 
- });
 
 Route::get('/base', function(){
 

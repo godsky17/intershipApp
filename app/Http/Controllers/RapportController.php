@@ -10,7 +10,7 @@ class RapportController extends Controller
 {
     public function index()
     {
-        return view('rapport.index', [
+        return view('administration.rapport.index', [
             'rapports' => Rapport::where('status_id', 1)->paginate(10),
         ]);
     }

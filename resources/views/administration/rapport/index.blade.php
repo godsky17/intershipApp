@@ -1,4 +1,4 @@
-@extends('../dashboard.base')
+@extends('../administration.dashboard.base')
 @section('content')
 @if (session('success'))
 <div class="py-[18px] px-6 font-normal text-sm rounded-md bg-success-500 text-white">

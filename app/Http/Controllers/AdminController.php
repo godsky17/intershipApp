@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AdminCreateRequest;
+use App\Http\Requests\AdminUpdateRoleRequest;
 use App\Mail\WelcomeAdminMail;
 use App\Models\Admin;
 use App\Models\Role;
@@ -16,14 +17,15 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.index', [
-            'admins' => Admin::paginate(10)
+        return view('administration.admin.index', [
+            'admins' => Admin::orderBy('created_at', 'desc')->paginate(10),
+            'roles' => Role::pluck('name', 'id')
         ]);
     }
 
     public function create()
     {
-        return view('admin.form', [
+        return view('administration.admin.form', [
             'admin' => new Admin(),
             'roles' => Role::get()
         ]);
@@ -51,5 +53,24 @@ class AdminController extends Controller
         } catch (Exception $e) {
             echo $e->getMessage();
         }
+    }
+
+    public function goToUpdateRole(Admin $admin)
+    {
+        return view('administration.admin.form', [
+            'admin' => $admin,
+            'roles' => Role::pluck('name', 'id')
+        ]);
+    }
+
+    public function updateRole(AdminUpdateRoleRequest $request, Admin $admin)
+    {
+        if ($request->validated('role_id') == 1 || $request->validated('role_id') == 2 ) {
+            return back()->withErrors(['role_id'=> 'Impossible d\'attribuer ce role a cet utilisateur']);
+        }
+
+        $admin->update($request->validated());
+        return to_route('admin.index')->with('success', "Le role a ete modifie avec succes.");
+
     }
 }
