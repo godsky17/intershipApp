@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\IntershipController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RapportController;
@@ -38,6 +39,13 @@ Route::prefix('intership')->middleware(['auth:admin', 'verified'])->name('inters
 Route::prefix('rapport')->middleware(['auth:admin', 'verified'])->name('rapport.')->group(function(){
     Route::get('/', [RapportController::class, 'index'])->name('index'); 
     Route::get('/validated-rapport/{rapport}', [RapportController::class, 'validated'])->name('validated'); 
+ });
+
+
+ Route::prefix('admin')->middleware(['auth:admin', 'verified'])->name('admin.')->group(function(){
+    Route::get('/', [AdminController::class, 'index'])->name('index'); 
+    Route::get('/creer-un-admin', [AdminController::class, 'create'])->name('create'); 
+    Route::post('/creer-un-admin', [AdminController::class, 'store'])->name('store'); 
  });
 
 Route::get('/base', function(){

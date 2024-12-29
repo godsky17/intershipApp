@@ -23,6 +23,7 @@ class Admin extends Authenticatable implements MustVerifyEmail
         'status',
         'online',
         'password',
+        'role_id'
     ];
 
     /**
