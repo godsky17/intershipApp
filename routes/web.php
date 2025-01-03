@@ -67,6 +67,10 @@ Route::prefix('stagiaire')->middleware(['auth', 'verified'])->group(function(){
         Route::get('/', [ThemeController::class, 'index'])->name('index');
         Route::get('/create', [ThemeController::class, 'create'])->name('create');
         Route::post('/create', [ThemeController::class, 'store'])->name('store');
+        Route::get('/update/{theme}', [ThemeController::class, 'update'])->name('update');
+        Route::post('/update/{theme}', [ThemeController::class, 'saveUpdate']);
+        Route::get('/achiver/{theme}', [ThemeController::class, 'achieved'])->name('achieved');
+        Route::get('/supprimer/{theme}', [ThemeController::class, 'delete'])->name('delete');
     });
 });
 

@@ -70,6 +70,22 @@
                                             </div>
                                         </div>
                                     @endsession
+
+                                    @session('success')
+                                        <div class="py-[18px] px-6 font-normal text-sm rounded-md bg-success-500 text-white">
+                                            <div class="flex items-center space-x-3 rtl:space-x-reverse">
+                                                <iconify-icon class="text-2xl flex-0"
+                                                    icon="system-uicons:target"></iconify-icon>
+                                                <p class="flex-1 font-Inter">
+                                                    {{ session('success') }}
+                                                </p>
+                                                <div class="flex-0 text-xl cursor-pointer">
+                                                    <iconify-icon icon="line-md:close"></iconify-icon>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endsession
+
                                     @yield('content')
                                 </div>
 

@@ -38,14 +38,11 @@ class ThemeController extends Controller
     public function store(ThemeRequest $request) : RedirectResponse  
     {
         $datas = $request->validated();
-        // TODO : Verifier que la date entrer n'est ni la date du jour ni une date ulterieur au jour actuelle
         $date_now = date('Y-m-d');
         if ($datas['date'] <= $date_now) {
             return back()->withErrors(['date' => "Date invalide !"]);
         }
 
-        /* TODO : Verifier si l'utilisateur n'a pas deja fais une poposition 
-        dans les 7 jours precedents et que cette dernier soit valider */
         $theme_of_user =  Auth::user()->themes()->get();
         $last_theme = $theme_of_user[count($theme_of_user) - 1];
 
@@ -58,5 +55,39 @@ class ThemeController extends Controller
         $theme_id = Theme::create($request->validated());
         Auth::user()->themes()->attach($theme_id);
         return to_route('stagiaire.theme.index')->with('success', "Theme enregister !");
+    }
+
+    public function update(Theme $theme){
+        return view('stagiaire.theme.form', [
+            'theme' => $theme
+        ]);
+    }
+
+    public function saveUpdate(ThemeRequest $request, Theme $theme)
+    {
+        if($theme->is_validate() === "Valider"){
+            return to_route('stagiaire.theme.index')->with('error', "Impossible d'effectuer cette operation");
+        }
+        
+        $date_now = date('Y-m-d');
+        if ($request->validated('date') <= $date_now) {
+            return back()->withErrors(['date' => "Date invalide !"]);
+        }
+
+        $theme->update($request->validated());
+        return to_route('stagiaire.theme.index')->with('success', "Theme modifier avec succes !");
+    }
+
+    public function achieved(Theme $theme)
+    {
+        $theme->achieved = 1;
+        $theme->save();
+        return to_route('stagiaire.theme.index')->with('success', "Theme achiver avec success !");
+    }
+
+    public function delete(Theme $theme)
+    {
+        $theme->delete();
+        return to_route('stagiaire.theme.index')->with('success', "Theme achiver avec success !");
     }
 }

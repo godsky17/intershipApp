@@ -9,7 +9,7 @@
                 </div>
             </header>
             <div class="card-text h-full">
-                <x-auth.form method="POST" action="{{ route('stagiaire.theme.store') }}" id="multipleValidation"
+                <x-auth.form method="POST" action="{{ $theme->exists ? route('stagiaire.theme.update', $theme) : route('stagiaire.theme.store')  }}" id="multipleValidation"
                     novalidate="novalidate">
                     <div class="grid md:grid-cols-1 gap-6">
 
