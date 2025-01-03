@@ -56,8 +56,7 @@ class AuthenticatedSessionController extends Controller
         }else{
             $request->authenticate();
             $request->session()->regenerate();
-            // return redirect()->intended(route('dashboard', absolute: false));
-            return 'Your are connected';
+            return redirect()->intended(route('stagiaireDashboard', absolute: false));
         }
 
         

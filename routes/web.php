@@ -4,7 +4,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\IntershipController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RapportController;
+use App\Http\Controllers\stagiaire\RapportController as StagiaireRapportController;
+use App\Http\Controllers\stagiaire\ThemeController;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -16,6 +19,8 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+// ROUTE RELATIVE A L'ADMINISTRATION
 
 Route::prefix('administration')->middleware(['auth:admin', 'verified'])->group(function(){
     Route::get('/dashboard', function () {
@@ -50,6 +55,19 @@ Route::prefix('administration')->middleware(['auth:admin', 'verified'])->group(f
         Route::get('/modifier-role/{admin}', [AdminController::class, 'goToUpdateRole'])->name('updateRole'); 
         Route::post('/modifier-role/{admin}', [AdminController::class, 'updateRole'])->name('updateRoleStore'); 
      });
+});
+
+// ROUTE RELATIVES AU STAGIAIRES
+Route::prefix('stagiaire')->middleware(['auth', 'verified'])->group(function(){
+    Route::get('/', function(){
+        return view('stagiaire.index');
+    })->name('stagiaireDashboard');
+
+    Route::prefix('/theme')->name('stagiaire.theme.')->group(function(){
+        Route::get('/', [ThemeController::class, 'index'])->name('index');
+        Route::get('/create', [ThemeController::class, 'create'])->name('create');
+        Route::post('/create', [ThemeController::class, 'store'])->name('store');
+    });
 });
 
 Route::get('/base', function(){
