@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Theme extends Model
 {
@@ -45,5 +47,10 @@ class Theme extends Model
         }
         
         
+    }
+
+    public function document() : HasOne
+    {
+        return $this->hasOne(Document::class);
     }
 }

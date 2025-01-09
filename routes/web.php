@@ -4,8 +4,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\IntershipController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RapportController;
+use App\Http\Controllers\stagiaire\DocumentController;
 use App\Http\Controllers\stagiaire\RapportController as StagiaireRapportController;
 use App\Http\Controllers\stagiaire\ThemeController;
+use App\Models\Theme;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -72,10 +74,17 @@ Route::prefix('stagiaire')->middleware(['auth', 'verified'])->group(function(){
         Route::get('/achiver/{theme}', [ThemeController::class, 'achieved'])->name('achieved');
         Route::get('/supprimer/{theme}', [ThemeController::class, 'delete'])->name('delete');
     });
+
+    Route::prefix('/document')->name('stagiaire.document.')->group(function(){
+        Route::get('/', [DocumentController::class, 'index'])->name('index');
+        Route::get('/create', [DocumentController::class, 'create'])->name('create');
+        Route::post('/create', [DocumentController::class, 'store'])->name('store');
+        Route::get('/achieved/{document}', [DocumentController::class, 'achieved'])->name('achieved');
+        Route::get('/corbeille/{document}', [DocumentController::class, 'corbeille'])->name('corbeille');
+    });
 });
 
 Route::get('/base', function(){
-
 });
 
 require __DIR__.'/auth.php';

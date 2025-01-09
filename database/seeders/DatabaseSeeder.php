@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
+use App\Models\Document;
 use App\Models\Graduate;
 use App\Models\Intership;
 use App\Models\Rapport;
@@ -38,5 +39,6 @@ class DatabaseSeeder extends Seeder
         //Intership::factory(50)->create();
         //Rapport::factory(30)->create();
         //Theme::factory(60)->create();
+        Document::factory(50)->create();
     }
 }

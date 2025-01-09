@@ -44,6 +44,15 @@
                     </span>
                 </a>
             </li>
+
+            <li class="">
+                <a href="{{ route('stagiaire.document.index') }}" class="navItem">
+                    <span class="flex items-center">
+                        <iconify-icon class=" nav-icon" icon="heroicons-outline:home"></iconify-icon>
+                        <span>Documents</span>
+                    </span>
+                </a>
+            </li>
         </ul>
         <!-- Upgrade Your Business Plan Card Start -->
         <div class="bg-slate-900 mb-10 mt-24 p-4 relative text-center rounded-2xl text-white"
